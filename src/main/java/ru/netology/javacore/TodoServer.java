@@ -43,7 +43,25 @@ public class TodoServer {
 
                     String response = null;
 
-                    switch (command.getType()) {
+                    CommandType type = command.getType();
+                    if (type == null) {
+                        response = "Command type was not recognized";
+                    }
+
+                    String task = command.getTask();
+                    if (task == null || task.isEmpty()) {
+                        response = "Task is empty";
+                    }
+
+                    if (response != null && !response.isEmpty()) {
+                        out.write(response + "\n");
+                        out.flush();
+
+                        System.out.println(response);
+                        continue;
+                    }
+
+                    switch (type) {
                         case ADD:
                             try {
                                 todos.addTask(command.getTask());
@@ -52,7 +70,7 @@ public class TodoServer {
                                 break;
                             }
 
-                            response = "Задача успешно добавлена";
+                            response = "Task has been added";
                             break;
                         case REMOVE:
                             try {
@@ -62,7 +80,7 @@ public class TodoServer {
                                 break;
                             }
 
-                            response = "Задача успешно удалена";
+                            response = "Task has been removed";
                             break;
                         case GET_ALL:
                             response = todos.getAllTasks();
@@ -76,7 +94,7 @@ public class TodoServer {
                 }
             }
         } catch (IOException e) {
-            System.out.println("Не могу стартовать сервер");
+            System.out.println("Unable to start the server");
             e.printStackTrace();
         }
     }

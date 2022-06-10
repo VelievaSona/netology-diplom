@@ -11,6 +11,10 @@ public class Todos {
     }
 
     public void addTask(String task) {
+        if (task == null || task.isEmpty()) {
+            throw new IllegalArgumentException("Task is empty");
+        }
+
         if (tasks.contains(task)) {
             throw new IllegalArgumentException("Такая задача уже была добавлена");
         }
@@ -19,6 +23,10 @@ public class Todos {
     }
 
     public void removeTask(String task) {
+        if (task == null || task.isEmpty()) {
+            throw new IllegalArgumentException("Task is empty");
+        }
+
         if (!tasks.contains(task)) {
             throw new NoSuchElementException("Задача не найдена");
         }
