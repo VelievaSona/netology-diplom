@@ -26,8 +26,12 @@ public class Client {
         response = sendRequest(CommandType.ADD, "Вынести мусор");
         System.out.println(response);
 
-        System.out.println("Получить все задачи");
-        response = sendRequest(CommandType.GET_ALL, null);
+        System.out.println("Добавить задачу \"Вынести мусор\"");
+        response = sendRequest(CommandType.ADD, "Вынести мусор");
+        System.out.println(response);
+
+        System.out.println("Удалить задачу \"Погулять с собакой\"");
+        response = sendRequest(CommandType.REMOVE, "Погулять с собакой");
         System.out.println(response);
 
         System.out.println("Удалить задачу \"Погулять с собакой\"");

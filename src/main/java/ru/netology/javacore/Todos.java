@@ -16,7 +16,7 @@ public class Todos {
         }
 
         if (tasks.contains(task)) {
-            throw new IllegalArgumentException("Такая задача уже была добавлена");
+            return;
         }
 
         tasks.add(task);
@@ -28,13 +28,13 @@ public class Todos {
         }
 
         if (!tasks.contains(task)) {
-            throw new NoSuchElementException("Задача не найдена");
+            return;
         }
 
         tasks.remove(task);
     }
 
     public String getAllTasks() {
-        return tasks.stream().reduce((s1, s2) -> s1 + " " + s2).orElse("");
+        return tasks.stream().sorted().reduce((s1, s2) -> s1 + " " + s2).orElse("");
     }
 }

@@ -65,24 +65,21 @@ public class TodoServer {
                         case ADD:
                             try {
                                 todos.addTask(command.getTask());
-                            } catch(Exception e) {
+                            } catch (Exception e) {
                                 response = e.getMessage();
                                 break;
                             }
 
-                            response = "Task has been added";
+                            response = todos.getAllTasks();
                             break;
                         case REMOVE:
                             try {
                                 todos.removeTask(command.getTask());
-                            } catch (Exception e){
+                            } catch (Exception e) {
                                 response = e.getMessage();
                                 break;
                             }
 
-                            response = "Task has been removed";
-                            break;
-                        case GET_ALL:
                             response = todos.getAllTasks();
                             break;
                     }
